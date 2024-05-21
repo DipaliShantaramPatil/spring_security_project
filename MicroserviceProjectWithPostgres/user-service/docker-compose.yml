@@ -1,0 +1,73 @@
+version: '3.1'
+services:
+  dbservice:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      POSTGRES_DB: services_postgres
+    volumes:
+      - postgres-db:/data/postgres
+    ports:
+      - "5436:5432"
+    networks:
+      - usernet
+
+  userservice:
+    build: /home/ttpl-lnv15-092/IdeaProjects/MicroserviceProjectWithPostgres/user-service
+    depends_on:
+      - dbservice
+    environment:
+      - spring.datasource.url=jdbc:postgresql://dbservice:5432/services_postgres
+      - spring.datasource.username=postgres
+      - spring.datasource.password=root
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      - eureka.client.service-url.defaultZone=http://serviceregistry:8761/eureka/
+    ports:
+      - "8086:8081"
+    networks:
+      - usernet
+
+  patientservice:
+    build: /home/ttpl-lnv15-092/IdeaProjects/MicroserviceProjectWithPostgres/patient-service
+    depends_on:
+      - dbservice
+      - serviceregistry
+    environment:
+      - spring.datasource.url=jdbc:postgresql://dbservice:5432/services_postgres
+      - spring.datasource.username=postgres
+      - spring.datasource.password=root
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      - eureka.client.service-url.defaultZone=http://serviceregistry:8761/eureka/
+    ports:
+      - "8087:8082"
+    networks:
+      - usernet
+
+  serviceregistry:
+    build: /home/ttpl-lnv15-092/IdeaProjects/MicroserviceProjectWithPostgres/ServiceRegistry
+    ports:
+      - "8760:8761"
+    networks:
+      - usernet
+
+  apigateway:
+    build: /home/ttpl-lnv15-092/IdeaProjects/MicroserviceProjectWithPostgres/ApiGateway
+    ports:
+      - "8089:8083"
+    depends_on:
+      - serviceregistry
+    environment:
+      - eureka.client.service-url.defaultZone=http://serviceregistry:8761/eureka/
+    networks:
+      - usernet
+
+networks:
+  usernet:
+
+volumes:
+  postgres-db:
+    driver: local
+
+
