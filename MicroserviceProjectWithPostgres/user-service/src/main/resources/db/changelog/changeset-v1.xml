@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/pro
+    http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <property name="liquibase.ignoreFailures" value="true"/>
+
+<!--    <changeSet id="1" author="Rushali">-->
+<!--        <createTable tableName="user_table">-->
+<!--            <column name="userId" type="int">-->
+<!--                <constraints primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="username" type="varchar(255)"></column>-->
+<!--            <column name="emailId" type="varchar(255)"></column>-->
+<!--            <column name="password" type="varchar(255)"></column>-->
+<!--            <column name="role" type="varchar(255)"></column>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="2" author="sushma">-->
+<!--        <insert tableName="user_table">-->
+<!--&lt;!&ndash;            <column name="userId" value="2"/>&ndash;&gt;-->
+<!--            <column name="username" value="Sushma" />-->
+<!--            <column name="email_id" value="sushma@gmail.com" />-->
+<!--            <column name="password" value="sushma" />-->
+<!--            <column name="role" value="ROLE_USER" />-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="3" author="Mansi">-->
+<!--        <addColumn tableName="user_table">-->
+<!--            <column name="address"-->
+<!--                    type="varchar(255)"/>-->
+<!--            <column name="gender"-->
+<!--                    type="varchar(50)"/>-->
+<!--        </addColumn>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="4" author="Mansi">&ndash;&gt;-->
+<!--            <insert tableName="User_Info">-->
+<!--                <column name="userId" value="2"/>-->
+<!--                <column name="address" value="Pune" />-->
+<!--                <column name="gender" value="Female" />-->
+<!--            </insert>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet  author="Mansi"  id="5">-->
+<!--        <delete schemaName="public"-->
+<!--                 tableName="User_Info">-->
+<!--            <where>userId='0'</where>-->
+<!--        </delete>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>
